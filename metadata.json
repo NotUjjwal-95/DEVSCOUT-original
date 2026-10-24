@@ -1,6 +1,8 @@
 {
-  "name": "DEVSCOUT V3 — Sustainable Technology Decision Intelligence",
+  "name": "DEVSCOUT — Sustainable Technology Decision Intelligence",
   "description": "AI-powered Sustainable Technology Decision Intelligence Platform combining evidence-backed technical research, transparent trade-off analysis, sustainability estimates, and educational explanations.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
