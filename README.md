@@ -1,11 +1,21 @@
-<div align="center">
+# DEVSCOUT V3
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+**AI-Powered Sustainable Technology Decision Intelligence Platform — INNOTECH 2026 Finale**
 
-  <h1>Built with AI Studio</h2>
+## Product Vision
+DEVSCOUT helps developers choose suitable technologies and architectures by combining:
+- **Evidence-Backed Technical Research**: Empirical benchmarks, repository telemetry, and verified documentation.
+- **Transparent Trade-Off Analysis**: Multi-dimensional comparison across performance, maintainability, ecosystem maturity, and TCO.
+- **Sustainability Estimates**: Carbon footprint modeling, runtime energy efficiency (SCI), and green cloud region profiling.
+- **Educational Explanations**: Concept breakdowns, migration roadmaps, and architectural rationale tailored to team skill levels.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## Repository Structure
+```text
+DEVSCOUT-V3/
+├── frontend/        # React 19 + Vite + Tailwind CSS decision intelligence workbench
+├── backend/         # Node.js + Express + Gemini AI multi-stage research & analysis engine
+├── shared/          # Shared TypeScript interfaces and domain contracts
+├── docs/            # System architecture and API specifications
+├── scripts/         # Build, seed, and workspace automation scripts
+└── .github/         # CI/CD workflows
+```
