@@ -10,8 +10,11 @@ export const pool = new Pool({
   connectionTimeoutMillis: 5_000,
 });
 
-pool.on('error', () => {
-  console.error('[DEVSCOUT Database] Unexpected error on idle PostgreSQL pool client.');
+pool.on('error', (err: Error) => {
+  console.error(
+    '[DEVSCOUT Database] Unexpected error on idle PostgreSQL pool client:',
+    err.message || 'Unknown pool error'
+  );
 });
 
 export default pool;
