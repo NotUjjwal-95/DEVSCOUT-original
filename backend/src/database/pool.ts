@@ -1,0 +1,17 @@
+import pg from 'pg';
+import { env } from '../config/env.ts';
+
+const { Pool } = pg;
+
+export const pool = new Pool({
+  connectionString: env.DATABASE_URL,
+  max: 10,
+  idleTimeoutMillis: 30_000,
+  connectionTimeoutMillis: 5_000,
+});
+
+pool.on('error', () => {
+  console.error('[DEVSCOUT Database] Unexpected error on idle PostgreSQL pool client.');
+});
+
+export default pool;

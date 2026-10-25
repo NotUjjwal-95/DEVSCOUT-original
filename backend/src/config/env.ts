@@ -13,6 +13,7 @@ export interface BackendEnv {
   CORS_ORIGIN: string[];
   REQUEST_BODY_LIMIT: string;
   CACHE_TTL_SECONDS: number;
+  DATABASE_URL: string;
   GEMINI_API_KEY?: string;
   GITHUB_TOKEN?: string;
 }
@@ -91,6 +92,31 @@ function parseCorsOrigins(raw: string | undefined, defaultOrigin: string): strin
   return origins;
 }
 
+function parseDatabaseUrl(raw: string | undefined): string {
+  const trimmed = raw?.trim();
+  if (!trimmed) {
+    throw new Error(
+      '[DEVSCOUT Config Error] Missing required environment variable DATABASE_URL.'
+    );
+  }
+
+  try {
+    const parsedUrl = new URL(trimmed);
+    if (parsedUrl.protocol !== 'postgres:' && parsedUrl.protocol !== 'postgresql:') {
+      throw new Error('Invalid protocol');
+    }
+    if (!parsedUrl.hostname) {
+      throw new Error('Missing hostname');
+    }
+  } catch {
+    throw new Error(
+      '[DEVSCOUT Config Error] Invalid DATABASE_URL. Expected a valid PostgreSQL connection URL (postgres:// or postgresql://).'
+    );
+  }
+
+  return trimmed;
+}
+
 export function loadEnv(source: NodeJS.ProcessEnv = process.env): BackendEnv {
   const NODE_ENV = parseNodeEnv(source.NODE_ENV);
   const PORT = parsePort(source.PORT, 4000);
@@ -101,6 +127,7 @@ export function loadEnv(source: NodeJS.ProcessEnv = process.env): BackendEnv {
     'CACHE_TTL_SECONDS',
     3600
   );
+  const DATABASE_URL = parseDatabaseUrl(source.DATABASE_URL);
 
   const GEMINI_API_KEY = source.GEMINI_API_KEY?.trim() || undefined;
   const GITHUB_TOKEN = source.GITHUB_TOKEN?.trim() || undefined;
@@ -111,6 +138,7 @@ export function loadEnv(source: NodeJS.ProcessEnv = process.env): BackendEnv {
     CORS_ORIGIN,
     REQUEST_BODY_LIMIT,
     CACHE_TTL_SECONDS,
+    DATABASE_URL,
     GEMINI_API_KEY,
     GITHUB_TOKEN,
   });
