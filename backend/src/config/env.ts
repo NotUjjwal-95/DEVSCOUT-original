@@ -14,6 +14,7 @@ export interface BackendEnv {
   REQUEST_BODY_LIMIT: string;
   CACHE_TTL_SECONDS: number;
   DATABASE_URL: string;
+  GOOGLE_CLIENT_ID?: string;
   GEMINI_API_KEY?: string;
   GITHUB_TOKEN?: string;
 }
@@ -129,6 +130,7 @@ export function loadEnv(source: NodeJS.ProcessEnv = process.env): BackendEnv {
   );
   const DATABASE_URL = parseDatabaseUrl(source.DATABASE_URL);
 
+  const GOOGLE_CLIENT_ID = source.GOOGLE_CLIENT_ID?.trim() || undefined;
   const GEMINI_API_KEY = source.GEMINI_API_KEY?.trim() || undefined;
   const GITHUB_TOKEN = source.GITHUB_TOKEN?.trim() || undefined;
 
@@ -139,6 +141,7 @@ export function loadEnv(source: NodeJS.ProcessEnv = process.env): BackendEnv {
     REQUEST_BODY_LIMIT,
     CACHE_TTL_SECONDS,
     DATABASE_URL,
+    GOOGLE_CLIENT_ID,
     GEMINI_API_KEY,
     GITHUB_TOKEN,
   });
